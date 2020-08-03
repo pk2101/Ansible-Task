@@ -44,13 +44,13 @@
 
    - name: Creating a Persistent Volume Dir
      file:
-       path: "/pv"
+       path: "/root/pv"
        state: directory
 
    - name: Copying the HTML code in the Directory
      copy: 
        src: "/root/Desktop/index.html"
-       dest: "/pv"
+       dest: "/root/pv"
 
    - name: Launching an HTTPD Container
      when: z.failed == false
@@ -63,4 +63,4 @@
        ports:
          - "8888:80"
        volumes: 
-         - /pv:/usr/local/apache2/htdocs
+         - /root/pv:/usr/local/apache2/htdocs
